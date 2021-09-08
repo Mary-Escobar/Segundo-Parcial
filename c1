@@ -1,0 +1,32 @@
+class Menu:
+    def __init__ (self,titulo,opciones=[ ]):
+       self.titulo=titulo
+       self.opciones=opciones
+
+    def menu(self):
+        print(self.titulo)
+        for opcion in self.opciones:
+            print(opcion)
+        op=input('Escoja una opcion [1....{}]: '.format(len(self.opciones)))
+        return op
+    
+ob=Menu("Menu principal",[ "1.Calculadora", "2.Numeros","3.Listas","4.Cadenas","5.Salir"])
+op=ob.menu()
+if op=="1":
+    ob=Menu("Menu Calculadora",[ "1.Suma", "2.Resta","3.Salir"])
+    op=ob.menu()
+    if op=="1":
+        print("SUMA DE DOS NUMEROS")
+        n1=int(input("ingrese un numero:"))
+        n2=int(input("ingrese un numero:"))
+        suma=n1+n2
+        print("La suma de los numeros {} y {} es {}".format(n1,n2,suma))
+elif op=="2":
+        ob=Menu("Menu Numeros",[ "1.Perfecto", "2.Primo","3.Salir"])
+        op=ob.menu()
+elif op=="3":
+    print("Menu Listas")
+elif op=="4":
+    print("Menu Cadena")
+else:
+    print("GRACIAS POR USAR MI CODIGO")
