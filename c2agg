@@ -1,0 +1,44 @@
+class Calculadora:
+    def __init__ (self,num1,num2):
+       self.n1=num1
+       self.n2=num2
+    
+    def suma(self):
+        return self.n1 + self.n2
+
+    def resta(self):
+        pass
+
+    def multiplicacion(self):
+        mul=self.n1 * self.n2
+        print("{} * {}= {}".format(self.n1,self.n2,mul))
+
+    def division(self):
+        pass
+
+class CalEstandar(Calculadora):
+    def __init__ (self,num1,num2):
+        super(). __init__ (num1,num2)
+
+    def multiplicacion(self):
+        return self.n1 * self.n2
+        
+
+    def exponente(self):
+        pass
+
+
+    def valorAbsoluto(self, numero):
+        if numero < 0:
+            numero= numero * 1
+        return numero
+
+class CalCientifica(Calculadora):
+    def __init__ (self,num1,num2):
+        super(). __init__ (num1,num2)
+
+# cal=Calculadora(4,6)
+# cal.multiplicacion()
+
+# ce=CalEstandar(6,9)
+# print (ce.multiplicacion())
