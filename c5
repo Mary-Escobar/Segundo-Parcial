@@ -1,0 +1,131 @@
+from datetime import date
+class  Empresa:
+    def __init__ (self,nom='Pablito',ruc='09487374',tel='2443545',dir='av.loja '):
+        self.nombre=nom
+        self.ruc=ruc
+        self.telefono=tel
+        self.direccion=dir
+    
+    def mostrarEmpresa(self):
+        print('Empresa:{} \nRuc:{}'.format(self.nombre,self.ruc))
+
+class Cliente :
+    def __init__ (self,nom,ced,tel):
+        self.nombre=nom
+        self.cedula=ced
+        self.telefono=tel
+    
+    def mostrarCliente(self):
+        print(self.nombre,self.cedula,self.telefono)
+
+class ClienteCorporativo(Cliente):
+    def __init__ (self,nom,ced,tel,contra):
+        super().__init__(nom,ced,tel)
+        self.__contrato=contra
+    
+        @property
+        def contrato(self):
+            return self.__contrato
+
+        @contrato.setter
+        def contrato(self,value):
+            if value:
+                self.__contrato=value
+            else:
+                self.__contrato='Sin contrato'
+
+    def mostrarCliente(self):
+        print(self.nombre,self.__contrato)
+
+class ClientePersonal(Cliente):
+    def __init__ (self,nom,ced,tel,promocion= True):
+        super().__init__(nom,ced,tel)
+        self.__promocion=promocion
+    
+    @property
+    def promocion(self):
+        return self.__promocion == True
+            
+
+    def mostrarCliente(self):
+        print(self.nombre,self.promocion)
+
+
+class Articulo:
+    sec=0
+    iva=0.12
+    def __init__ (self,des,pre,sto):
+        Articulo.sec+=1
+        self.codigo=Articulo.sec
+        self.descripcion=des
+        self.precio=pre
+        self.stock=sto
+
+    def mostrarArticulo(self):
+        print(self.codigo,self.descripcion,self.precio)
+
+
+class DetVenta:
+    linea=0
+    iva=0.1
+    def __init__ (self,articulo,cantidad):
+        DetVenta.linea+=1
+        self.lineaDetalle=DetVenta.linea
+        self.articulo=articulo
+        self.precio=articulo.precio
+        self.cantidad=cantidad
+
+   
+
+
+class CabVenta:
+    def __init__ (self,fac,empresa,fecha,cliente,to=0):
+       self.factura=fac
+       self.empresa=empresa
+       self.fecha=fecha
+       self.cliente=cliente
+       self.total=to
+       self.detalle=[ ]
+
+    def agregarDetalle(self,articulo,cantidad):
+        detalle=DetVenta(articulo,cantidad)
+        self.total+=detalle.precio * detalle.cantidad
+        self.detalleVen.append(detalle)
+
+    def mostrarVenta(self,empNombre,EmpRuc):
+        print('Empresa:{:17} Ruc:{}'.format(self.empNombre,self.EmpRuc))
+        print('Factura:{:17} Fecha:{}'.format(self.factura,self.fecha))
+        self.cliente.mostrarCliente()
+        print('Linea Articulo     Precio    Cantidad')
+        for det in self.detalleVen:
+            print('{:17}    {:17}    {:17}'.format(det.linea))
+        print('Total venta: {:17}'.format(self.total))
+
+
+em=Empresa()   
+em.mostrarEmpresa()  
+print()
+
+cli=ClienteCorporativo('jose','435364','333','nº001')
+cli.mostrarCliente()
+cli.contrato='002'
+print(cli.contrato)
+print()
+
+clie=ClientePersonal('jose','435364','333',True)
+clie.mostrarCliente()
+
+ar=Articulo('agua',0.50,6)
+ar.mostrarArticulo()
+ar1=Articulo('leche',0.50,6)
+ar1.mostrarArticulo()
+print(Articulo.iva)
+print('')
+
+clie=ClientePersonal('jose','435364','333',True)
+ar=Articulo('1','AGUA',787)
+today=date.today()
+fecha=date(2021,9,23)
+venta=venta('f004',date.today(),clie)
+venta.agregarDetalle(ar,3)
+venta.mostrarVenta(empresa.nombre,empresa.ruc)
